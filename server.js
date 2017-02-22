@@ -4,17 +4,16 @@ var mongo = require('mongodb');
 var routes = require('./routes/index');
 var app = express();
 
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
 var url = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/url-shortener';
 mongo.MongoClient.connect(url, function (err, db) {
   
   if (err) throw new Error('Database failed to connect!');
-  else console.log('Connection established to', url);
   
-  app.set('views', path.join(__dirname, 'views'));
-  app.set('view engine', 'ejs');
-  
+  console.log('Connection established to', url);
   routes(app, db);
-  
   
   var port = process.env.PORT || 8080;
   app.listen(port, function() {
