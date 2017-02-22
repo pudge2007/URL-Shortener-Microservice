@@ -14,7 +14,10 @@ mongo.MongoClient.connect(url, function (err, db) {
   
   console.log('Connection established to', url);
   routes(app, db);*/
-  routes(app);
+  app.get('/', function(req, res) {
+    res.render('index');
+});
+
   var port = process.env.PORT || 8080;
   app.listen(port, function() {
     console.log("App now running on port", port);
