@@ -1,13 +1,13 @@
-module.exports = function(app) {
+module.exports = function(app, db) {
 
 var site_url = "https://ib-shortener-url.herokuapp.com/";
-/*var urls = db.collection('urls');*/
+var urls = db.collection('urls');
 
 app.get('/', function(req, res) {
     res.render('index');
 });
 
-/*app.get('/:url', function(req, res) {
+app.get('/:url', function(req, res) {
     var url = site_url + req.params.url;
     if (url != site_url + 'favicon.ico') {
     urls.findOne({
@@ -22,7 +22,7 @@ app.get('/', function(req, res) {
         }
     });
     }
-})*/
+})
 
 app.get('/new/:url*', function(req, res) {
     var url = req.url.slice(5);
@@ -32,10 +32,10 @@ app.get('/new/:url*', function(req, res) {
         result = {original_url: url, short_url: site_url + linkGen()}
 	    res.send(result);
 
-/*        urls.save(result, function(err, res) {
+        urls.save(result, function(err, res) {
             if (err) throw err;
             console.log('Saved ' + result);
-        });*/
+        });
         
     } else {
         result = {"error": "Wrong url format"};
