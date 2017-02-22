@@ -3,11 +3,17 @@ module.exports = function(app, db) {
 var site_url = "https://ib-shortener-url.herokuapp.com";
 var urls = db.collection('urls');
 
-app.get('/', function(req, res) {
-    res.render('index');
+app.route('/')
+    .get(function(req, res) {
+        res.render('index');
+    });
+app.route('/new')
+    .get(function(req, res) {
+        res.render('index');
 });
 
-app.get('/:url', function(req, res) {
+app.route('/:url')
+    .get(function(req, res) {
     var url = site_url + req.url;
     if (url != site_url + '/favicon.ico') {
     urls.findOne({
