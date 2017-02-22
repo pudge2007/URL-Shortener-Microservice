@@ -8,8 +8,10 @@ app.get('/', function(req, res) {
 });
 
 app.get('/:url', function(req, res) {
+    var url = site_url + req.params.url;
+    if (url != site_url + 'favicon.ico') {
     urls.findOne({
-        "short_url": site_url + req.params.url
+        "short_url": url
     }, function(err, result) {
         if (err) throw err;
         if (result) {
@@ -19,6 +21,7 @@ app.get('/:url', function(req, res) {
             res.send({"error": "This url is not on the database."});
         }
     });
+    }
 })
 
 app.get('/new/:url*', function(req, res) {
