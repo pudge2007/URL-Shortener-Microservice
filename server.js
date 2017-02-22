@@ -4,8 +4,7 @@ var mongo = require('mongodb');
 var routes = require('./routes/index');
 var app = express();
 
-/*var url = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/url-shortener';*/
-var url = "mongodb://admin:1qaz2wsx3edc@ds157469.mlab.com:57469/ib-projects"
+var url = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/url-shortener';
 mongo.MongoClient.connect(url, function (err, db) {
   
   if (err) throw new Error('Database failed to connect!');
