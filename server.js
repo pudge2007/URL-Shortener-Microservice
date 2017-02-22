@@ -1,7 +1,7 @@
 var express = require('express');
 var path = require('path');
-var mongo = require('mongodb');
-var routes = require('./routes/index.js');
+/*var mongo = require('mongodb');
+var routes = require('./routes/index.js');*/
 var app = express();
 
 app.set('views', path.join(__dirname, 'views'));
