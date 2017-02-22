@@ -1,6 +1,6 @@
 module.exports = function(app, db) {
 
-var site_url = "https://ib-shortener-url.herokuapp.com/";
+var site_url = "https://ib-shortener-url.herokuapp.com";
 var urls = db.collection('urls');
 
 app.get('/', function(req, res) {
@@ -8,8 +8,8 @@ app.get('/', function(req, res) {
 });
 
 app.get('/:url', function(req, res) {
-    var url = site_url + req.params.url;
-    if (url != site_url + 'favicon.ico') {
+    var url = site_url + req.url;
+    if (url != site_url + '/favicon.ico') {
     urls.findOne({
         "short_url": url
     }, function(err, result) {
@@ -29,7 +29,7 @@ app.get('/new/:url*', function(req, res) {
     var result = {}
     
     if(validateURL(url)){
-        result = {original_url: url, short_url: site_url + linkGen()}
+        result = {original_url: url, short_url: site_url + '/' + linkGen()}
 	    res.send(result);
 
         urls.save(result, function(err, res) {
