@@ -1,7 +1,7 @@
 var express = require('express');
 var path = require('path');
-/*var mongo = require('mongodb');
-var routes = require('./routes/index.js');*/
+/*var mongo = require('mongodb'); */
+var routes = require('./routes/index.js');
 var app = express();
 
 app.set('views', path.join(__dirname, 'views'));
@@ -14,9 +14,7 @@ mongo.MongoClient.connect(url, function (err, db) {
   
   console.log('Connection established to', url);
   routes(app, db);*/
-  app.get('/', function(req, res) {
-    res.render('index');
-});
+  routes(app);
 
   var port = process.env.PORT || 8080;
   app.listen(port, function() {
